@@ -95,6 +95,27 @@ All four current HTML files are complete documents with their headers inline. If
 
 For manual Validate by URI checks at https://validator.w3.org/, enter the published page URL, for example `https://zoeyhayes-cloud.github.io/CIS124_CourseProject/index.html`. A `github.com/.../blob/...` URL is GitHub's file viewer, not the webpage. URI checks can be affected by deployment delays and service access restrictions.
 
+## Optional practice: make an error, read it, and fix it
+
+You can try this locally before relying on the automatic check. Keep this exercise out of `main` so it does not deliberately break the published project.
+
+1. Make a temporary copy of `index.html` called `practice.html` in your local project folder.
+2. Inside its `<main>` element, add `<img src="cat.png">`.
+3. Run `node scripts/validate-html.mjs practice.html`. W3C should report that the image needs an `alt` attribute. Read the filename and line number in the output.
+4. Change the element to `<img src="cat.png" alt="A sleeping orange cat">`, using an accurate description if you use a real image.
+5. Run the same command again. The missing-attribute error should be gone. This checks the HTML markup; it does not confirm that `cat.png` exists or that the description is accurate.
+6. Delete `practice.html` when finished, then run `node scripts/validate-html.mjs` to check the real project pages.
+
+The goal is to see the cycle: **write HTML → read the validator's feedback → understand the rule → fix the HTML → check again**. If you get `INCOMPLETE`, investigate the service or request error before changing your HTML.
+
+### Questions to discuss during review
+
+- Which workflow lines make the check run after a merge to `main`?
+- Why does the script check the contents of W3C's response even after the web request succeeds?
+- Why must one passing page not erase another page's failure?
+- What is the difference between a markup error and a service outage?
+- Can valid HTML still contain a broken link or have an unreadable layout?
+
 ## Checks performed for this change
 
 The four existing pages passed a live W3C check with zero errors and zero warnings. A separate deliberately invalid page failed on a missing `alt` attribute, confirming that markup errors produce a failing exit status.
