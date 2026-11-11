@@ -1,0 +1,24 @@
+
+/* Body styles */
+body {
+    padding: 25px;
+    margin: 0;
+    background-color: #d9d9d9;
+    color: #333333;
+    font-family: Georgia, serif;
+}
+
+/* Link styles */
+a {
+    color: #8b2e2e;
+}
+
+a:hover {
+    color: #cc5500;
+}
+
+/* Heading styles */
+h1, h2, h3, h4, h5, h6 {
+    color: #cc5500;
+    font-family: "Arial Black", sans-serif;
+}
